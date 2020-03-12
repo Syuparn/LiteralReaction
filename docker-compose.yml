@@ -1,0 +1,13 @@
+version: '3'
+services:
+  apiserver:
+    build:
+      # use Dockerfile.dev (for development) instead
+      dockerfile: Dockerfile.dev
+      context: ./apiserver/
+    tty: true # keep on running
+    ports:
+      - "127.0.0.1:8080:80" # host:container
+    volumes:
+      - ./apiserver:/go/src/apiserver # mounted dir (host:container)
+    working_dir: /go/src/apiserver
