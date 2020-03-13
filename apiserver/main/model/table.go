@@ -11,8 +11,9 @@ type Word struct {
 }
 
 type FavSentence struct {
-	FormerPos  POS `json:"FormerPos"`
-	LatterPos  POS `json:"LatterPos"`
+	FormerPOS  POS `json:"FormerPOS"`
+	LatterPOS  POS `json:"LatterPOS"`
+	Particle   string
 	FormerWord string
 	LatterWord string
 }
@@ -20,8 +21,9 @@ type FavSentence struct {
 func (s *FavSentence) UnmarshalJSON(data []byte) (err error) {
 	var value map[string]string
 	json.Unmarshal(data, &value)
-	s.FormerPos = namePos(value["FormerPos"])
-	s.LatterPos = namePos(value["LatterPos"])
+	s.FormerPOS = namePOS(value["FormerPOS"])
+	s.LatterPOS = namePOS(value["LatterPOS"])
+	s.Particle = value["Particle"]
 	s.FormerWord = value["FormerWord"]
 	s.LatterWord = value["LatterWord"]
 	return nil
@@ -49,7 +51,7 @@ func posName(pos POS) string {
 	}[pos]
 }
 
-func namePos(name string) POS {
+func namePOS(name string) POS {
 	return map[string]POS{
 		"adjective": Adj,
 		"adverb":    Adverb,

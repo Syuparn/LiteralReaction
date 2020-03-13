@@ -23,6 +23,5 @@ RUN wget -O ipadic.tar.gz ${IPADIC_URL} \
     && mkdir -p ${TMP_SQL_DIR} \
     && COPY_TO=${TMP_SQL_DIR} SQL_NAME=${SQL_NAME} db/setup-db.bash
 
-# build app
-RUN cp ${TMP_SQL_DIR}/${SQL_NAME} . \
-    && go build
+# db to binary dir
+RUN cp ${TMP_SQL_DIR}/${SQL_NAME} ./main

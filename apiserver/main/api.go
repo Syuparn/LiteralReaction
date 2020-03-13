@@ -2,6 +2,7 @@ package main
 
 import (
 	"apiserver/model"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -57,7 +58,13 @@ func PostSentence(w rest.ResponseWriter, r *rest.Request) {
 		rest.Error(w, "LatterWord required", 400)
 		return
 	}
-	dbHandler.StoreSentence(sentence)
+	err := dbHandler.StoreSentence(sentence)
+
+	if err != nil {
+		rest.Error(w, fmt.Sprintf("Error occurred: %s", err), 400)
+		return
+	}
+
 	// send back json to tell client that post has successed
 	w.WriteJson(&sentence)
 }

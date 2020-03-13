@@ -34,6 +34,7 @@ create table favorite_sentences (
     id integer primary key autoincrement,
     former_pos text,
     latter_pos text,
+    particle text,
     former_word text,
     latter_word text
 );

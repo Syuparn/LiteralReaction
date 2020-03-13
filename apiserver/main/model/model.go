@@ -46,9 +46,10 @@ func (h *DBHandler) GetWord(id int, pos POS) (*Word, error) {
 
 func (h *DBHandler) StoreSentence(s FavSentence) error {
 	_, err := h.db.Exec(
-		`insert into favorite_sentences (former_pos, latter_pos, former_word, latter_word) values (?, ?, ?, ?)`,
-		posName(s.FormerPos),
-		posName(s.LatterPos),
+		`insert into favorite_sentences (former_pos, latter_pos, particle, former_word, latter_word) values (?, ?, ?, ?, ?)`,
+		posName(s.FormerPOS),
+		posName(s.LatterPOS),
+		s.Particle,
 		s.FormerWord,
 		s.LatterWord,
 	)
@@ -71,12 +72,12 @@ func (h *DBHandler) GetSentences(page int) ([]FavSentence, error) {
 		s := FavSentence{}
 		var _id int
 		var former, latter string
-		err := rows.Scan(&_id, &former, &latter, &s.FormerWord, &s.LatterWord)
+		err := rows.Scan(&_id, &former, &latter, &s.Particle, &s.FormerWord, &s.LatterWord)
 		if err != nil {
 			log.Fatal(err)
 		}
-		s.FormerPos = namePos(former)
-		s.LatterPos = namePos(latter)
+		s.FormerPOS = namePOS(former)
+		s.LatterPOS = namePOS(latter)
 		sentences = append(sentences, s)
 	}
 
@@ -102,7 +103,7 @@ func wordSizeMap(db *sql.DB) map[POS]int {
 			log.Fatal(err)
 		}
 		// remove plural "s" from table name
-		sizeMap[namePos(name[:len(name)-1])] = n
+		sizeMap[namePOS(name[:len(name)-1])] = n
 	}
 
 	return sizeMap
