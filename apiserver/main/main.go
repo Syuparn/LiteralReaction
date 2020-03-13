@@ -26,5 +26,5 @@ func main() {
 		log.Fatal(err)
 	}
 	api.SetApp(router)
-	log.Fatal(http.ListenAndServe(":80", api.MakeHandler()))
+	log.Fatal(http.ListenAndServe(":5050", api.MakeHandler()))
 }

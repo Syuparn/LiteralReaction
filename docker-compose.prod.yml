@@ -5,7 +5,7 @@ services:
       context: ./apiserver/
       dockerfile: Dockerfile
     ports:
-      - "127.0.0.1:5050:80" # host:container
+      - "127.0.0.1:5050:5050" # host:container
     expose:
       - "5050" # port for other containers (not host)
   vue-frontend:

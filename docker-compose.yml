@@ -7,7 +7,7 @@ services:
       context: ./apiserver/
     tty: true # keep on running
     ports:
-      - "127.0.0.1:5050:80" # host:container
+      - "127.0.0.1:5050:5050" # host:container
     volumes:
       - ./apiserver:/go/src/apiserver # mounted dir (host:container)
     working_dir: /go/src/apiserver
