@@ -58,6 +58,12 @@ func PostSentence(w rest.ResponseWriter, r *rest.Request) {
 		rest.Error(w, "LatterWord required", 400)
 		return
 	}
+	if sentence.Particle != "" && !allowsParticle(sentence) {
+		rest.Error(w,
+			"Particle can be used only if (FormerPOS, LatterPOS) = (`noun`, `verb`)", 400)
+		return
+	}
+
 	err := dbHandler.StoreSentence(sentence)
 
 	if err != nil {
@@ -67,6 +73,12 @@ func PostSentence(w rest.ResponseWriter, r *rest.Request) {
 
 	// send back json to tell client that post has successed
 	w.WriteJson(&sentence)
+}
+
+func allowsParticle(s model.FavSentence) bool {
+	// allows particle only if words are noun & verb
+	// (otherwise the paricle in a phrase does not make sence)
+	return s.FormerPOS == model.Noun && s.LatterPOS == model.Verb
 }
 
 func GetSentences(w rest.ResponseWriter, r *rest.Request) {
