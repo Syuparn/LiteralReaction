@@ -11,3 +11,11 @@ services:
     volumes:
       - ./apiserver:/go/src/apiserver # mounted dir (host:container)
     working_dir: /go/src/apiserver
+  vue-frontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./vue-frontend
+    command: "http-server dist"
+    tty: true # keep on running
+    ports:
+      - "127.0.0.1:8080:8080" # host:container
