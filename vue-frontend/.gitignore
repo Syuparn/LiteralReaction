@@ -1,3 +1,6 @@
+# static files which are automatically copied from node_modules
+static/conic-gradient.js
+static/prefixfree.min.js
 
 # Created by https://www.gitignore.io/api/node
 # Edit at https://www.gitignore.io/?templates=node
