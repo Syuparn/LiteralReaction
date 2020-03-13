@@ -6,3 +6,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "127.0.0.1:5050:80" # host:container
+  vue-frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./vue-frontend
+    ports:
+      - "127.0.0.1:8080:80" # host:container
