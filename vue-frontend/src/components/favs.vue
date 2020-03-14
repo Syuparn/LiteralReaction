@@ -11,6 +11,8 @@
 </template>
 
 <script>
+const PAGE_SIZE = 100
+
 export default {
   name: 'favs',
   props: [],
@@ -18,12 +20,32 @@ export default {
     return {
       err: false,
       fetched: false,
+      page: 1,
+      unfetchedDataExists: true,
       phrases: []
     }
   },
   created: function () {
-    this.phrases = [{id: 0, str: '深い謎'}, {id: 1, str: '淡い期待'}]
-    this.fetched = true
+    this.$axios.get(`/api/favs/${this.page}`)
+      .then((response) => {
+        console.log('status:', response.status)
+        console.log('body:', response.data)
+        var phrases = response.data.map((d, i) => ({
+          id: i,
+          str: d.FormerWord + d.Particle + d.LatterWord
+        }))
+
+        if (phrases.length < PAGE_SIZE) {
+          this.unfetchedDataExists = false
+        }
+
+        this.phrases = this.phrases.concat(phrases)
+        this.fetched = true
+      })
+      .catch((reason) => {
+        this.err = true
+        console.log('failed to post fav:', reason)
+      })
   }
 }
 </script>
