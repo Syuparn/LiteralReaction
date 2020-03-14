@@ -30,7 +30,7 @@ export default new Router({
       name: 'result',
       component: result,
       props: {
-        formerPOS: 'adjective',
+        formerPOS: 'adj',
         latterPOS: 'noun'
       }
     },
