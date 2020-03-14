@@ -6,7 +6,7 @@
       <li v-for="phrase in phrases" v-bind:key="phrase.id">{{phrase.str}}</li>
     </ul>
     <div v-if="!fetched">Now loading...</div>
-    <button class="btn back-btn" v-on:click="more">
+    <button class="btn back-btn" v-on:click="more" v-if="unfetchedDataExists">
       More
     </button>
     <router-link to="/" class="btn back-btn">Back</router-link>
