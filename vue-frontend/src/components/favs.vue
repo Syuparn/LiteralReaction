@@ -59,14 +59,30 @@ h1, h2 {
 ul {
   list-style: none;
   display: flex;
+  /* align li horizontally until the row gets full */
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content: center;
+  /* include border width in box size */
+  box-sizing: border-box;
+  width:100%;
 }
 
 li {
+  /* 2 columns in each line */
+  width:40%;
+  /* include border width in box size */
+  box-sizing: border-box;
   padding: 1rem;
   margin: 1rem;
   background: #a67dff;
   color: #ffffff;
   font-size: 2.5rem;
   weight: bold;
+}
+
+/* aligning last element to left side if there are odd 'li's */
+li:nth-child(2n + 1):last-child {
+  margin-right: 50%;
 }
 </style>
