@@ -1,13 +1,13 @@
 <template>
   <div>
-    <bang-background>
+    <div v-if="err">
+      <h1>反応失敗…</h1>
+      <p>（通信エラー） もう一度試してみてね</p>
+    </div>
+    <bang-background v-else>
       <template v-slot:inner>
         <h1 class="left">結果：</h1>
-        <div v-if="err">
-          <h1>反応失敗…</h1>
-          <p>（通信エラー） もう一度試してみてね</p>
-        </div>
-        <table v-else>
+        <table>
           <tbody>
             <tr>
               <th id="former">{{former}}</th>
@@ -78,9 +78,25 @@ export default {
         this.ip = 'IPの取得に失敗しました'
       })
 
-    // TODO: fetch json from api by axios
-    this.former = '完成'
-    this.latter = '待ちわびる'
+    this.$axios.get(`/api/rand/${this.formerPOS}`)
+      .then((response) => {
+        console.log('status:', response.status)
+        console.log('body:', response.data)
+        this.former = response.data.Word
+      })
+      .catch((reason) => {
+        this.err = true
+      })
+
+    this.$axios.get(`/api/rand/${this.latterPOS}`)
+      .then((response) => {
+        console.log('status:', response.status)
+        console.log('body:', response.data)
+        this.latter = response.data.Word
+      })
+      .catch((reason) => {
+        this.err = true
+      })
   },
   methods: {
     changeParticle: function () {
