@@ -59,10 +59,10 @@ func (h *DBHandler) StoreSentence(s FavSentence) error {
 func (h *DBHandler) GetSentences(page int) ([]FavSentence, error) {
 	sentences := []FavSentence{}
 
-	minID := (page - 1) * PAGE_SIZE
+	minID := (page-1)*PAGE_SIZE + 1
 	maxID := page * PAGE_SIZE
 	rows, err := h.db.Query(
-		fmt.Sprintf(`select * from favorite_sentences where id >= %d and id < %d`, minID, maxID),
+		fmt.Sprintf(`select * from favorite_sentences where id >= %d and id <= %d`, minID, maxID),
 	)
 	if err != nil {
 		return sentences, err
