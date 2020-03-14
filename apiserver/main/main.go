@@ -11,11 +11,11 @@ func main() {
 	api := rest.NewApi()
 	api.Use(rest.DefaultDevStack...)
 	router, err := rest.MakeRouter(
-		rest.Get("/adj/:id", GetAdj),
+		rest.Get("/adjective/:id", GetAdj),
 		rest.Get("/adverb/:id", GetAdverb),
 		rest.Get("/noun/:id", GetNoun),
 		rest.Get("/verb/:id", GetVerb),
-		rest.Get("/rand/adj", GetRandAdj),
+		rest.Get("/rand/adjective", GetRandAdj),
 		rest.Get("/rand/adverb", GetRandAdverb),
 		rest.Get("/rand/noun", GetRandNoun),
 		rest.Get("/rand/verb", GetRandVerb),
