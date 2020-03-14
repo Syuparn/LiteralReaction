@@ -6,6 +6,9 @@
       <li v-for="phrase in phrases" v-bind:key="phrase.id">{{phrase.str}}</li>
     </ul>
     <div v-if="!fetched">Now loading...</div>
+    <button class="btn back-btn" v-on:click="more">
+      More
+    </button>
     <router-link to="/" class="btn back-btn">Back</router-link>
   </div>
 </template>
@@ -26,26 +29,32 @@ export default {
     }
   },
   created: function () {
-    this.$axios.get(`/api/favs/${this.page}`)
-      .then((response) => {
-        console.log('status:', response.status)
-        console.log('body:', response.data)
-        var phrases = response.data.map((d, i) => ({
-          id: i,
-          str: d.FormerWord + d.Particle + d.LatterWord
-        }))
+    this.more()
+  },
+  methods: {
+    more: function () {
+      this.$axios.get(`/api/favs/${this.page}`)
+        .then((response) => {
+          console.log('status:', response.status)
+          console.log('body:', response.data)
+          var phrases = response.data.map((d, i) => ({
+            id: i,
+            str: d.FormerWord + d.Particle + d.LatterWord
+          }))
 
-        if (phrases.length < PAGE_SIZE) {
-          this.unfetchedDataExists = false
-        }
+          if (phrases.length < PAGE_SIZE) {
+            this.unfetchedDataExists = false
+          }
 
-        this.phrases = this.phrases.concat(phrases)
-        this.fetched = true
-      })
-      .catch((reason) => {
-        this.err = true
-        console.log('failed to post fav:', reason)
-      })
+          this.phrases = this.phrases.concat(phrases)
+          this.fetched = true
+          this.page += 1
+        })
+        .catch((reason) => {
+          this.err = true
+          console.log('failed to post fav:', reason)
+        })
+    }
   }
 }
 </script>
