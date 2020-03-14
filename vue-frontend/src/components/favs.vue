@@ -62,7 +62,7 @@ ul {
   /* align li horizontally until the row gets full */
   flex-direction:row;
   flex-wrap:wrap;
-  justify-content: center;
+  justify-content: start;
   /* include border width in box size */
   box-sizing: border-box;
   width:100%;
@@ -73,16 +73,15 @@ li {
   width:40%;
   /* include border width in box size */
   box-sizing: border-box;
-  padding: 1rem;
-  margin: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
   background: #a67dff;
   color: #ffffff;
   font-size: 2.5rem;
   weight: bold;
-}
-
-/* aligning last element to left side if there are odd 'li's */
-li:nth-child(2n + 1):last-child {
-  margin-right: 50%;
 }
 </style>
