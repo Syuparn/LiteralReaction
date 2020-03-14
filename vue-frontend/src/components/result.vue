@@ -92,8 +92,26 @@ export default {
       this.particleID = (this.particleID + 1) % this.particles.length
     },
     fav: function () {
-      // TODO: api post if !this.isFav
-      this.isFav = true
+      // avoiding more than one favs
+      if (this.isFav) {
+        return
+      }
+
+      this.$axios.post('/api/favs', {
+        FormerPOS: this.formerPOS,
+        LatterPOS: this.latterPOS,
+        Particle: this.requiresParticle ? this.particle : '',
+        FormerWord: this.former,
+        LatterWord: this.latter
+      })
+        .then((response) => {
+          console.log('status:', response.status)
+          console.log('body:', response.data)
+          this.isFav = true
+        })
+        .catch((reason) => {
+          console.log('failed to post fav:', reason)
+        })
     }
   }
 }
