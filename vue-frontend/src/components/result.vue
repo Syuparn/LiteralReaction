@@ -25,7 +25,6 @@
         </button>
       </template>
     </bang-background>
-    <div>ip: {{ip}}</div>
     <router-link to="/" class="btn back-btn">Back</router-link>
   </div>
 </template>
@@ -47,8 +46,7 @@ export default {
       particles: ['を', 'に', 'が', 'で', 'と'],
       hoversOnParticle: false,
       isFav: false,
-      err: false,
-      ip: ''
+      err: false
     }
   },
   computed: {
@@ -69,15 +67,6 @@ export default {
     }
   },
   created: function () {
-    this.ip = 'IPを取得しています'
-    this.$axios.get('https://httpbin.org/get')
-      .then((response) => {
-        this.ip = response.data.origin
-      })
-      .catch((reason) => {
-        this.ip = 'IPの取得に失敗しました'
-      })
-
     this.$axios.get(`/api/rand/${this.formerPOS}`)
       .then((response) => {
         console.log('status:', response.status)
