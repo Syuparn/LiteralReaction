@@ -1,19 +1,46 @@
 # Literal Reaction (～言語反応～)
 ランダムに単語を「反応」させて、パワーワードを作ろう
 
+<img src="https://github.com/Syuparn/LiteralReaction/blob/master/readme-screenshots/top.png" width="640">
+
+<img src="https://github.com/Syuparn/LiteralReaction/blob/master/readme-screenshots/adj_noun.png" width="640">
+
+<img src="https://github.com/Syuparn/LiteralReaction/blob/master/readme-screenshots/adv_verb.png" width="640">
+
+<img src="https://github.com/Syuparn/LiteralReaction/blob/master/readme-screenshots/noun_verb.png" width="640">
+
 # 遊び方
-クリックするだけ！ランダムに単語を合体させて、パワーワードを作ろう！
-お気に入りの結果はグッドボタンで保存できるよ。
+クリックするだけ！ランダムに2つの単語を「反応」させて、パワーワードを作りましょう！
 
-# 起動方法
+![phrases](https://github.com/Syuparn/LiteralReaction/blob/master/readme-screenshots/phrases.gif)
 
-1. コンテナを起動
+アクセスするたびに単語は変化します。
+
+![rand](https://github.com/Syuparn/LiteralReaction/blob/master/readme-screenshots/rand.gif)
+
+助詞がしっくりこない？そんなときはボタンを押して切り替えましょう。
+
+![particle](https://github.com/Syuparn/LiteralReaction/blob/master/readme-screenshots/particle.gif)
+
+結果が面白かったらグッドボタンを押しましょう。お気に入りに保存されます！
+
+![fav](https://github.com/Syuparn/LiteralReaction/blob/master/readme-screenshots/favs.gif)
+
+# 試してみる
+
+1. このリポジトリをクローン
+
+```
+$ git clone https://github.com/Syuparn/LiteralReaction.git
+```
+
+2. ディレクトリ内でコンテナを起動
 
 ```
 $ docker-compose up
 ```
 
-2. ブラウザから`localhost:8080`にアクセス
+3. ブラウザから`localhost:8080`にアクセス
 
 # 使用したもの
 ## 環境
