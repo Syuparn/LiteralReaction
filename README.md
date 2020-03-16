@@ -37,7 +37,7 @@ $ git clone https://github.com/Syuparn/LiteralReaction.git
 2. ディレクトリ内でコンテナを起動
 
 ```
-$ docker-compose up
+$ docker-compose -f docker-compose.prod.yml up -d
 ```
 
 3. ブラウザから`localhost:8080`にアクセス
