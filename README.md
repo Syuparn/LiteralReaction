@@ -69,6 +69,9 @@ Node.js
 - vue-fontawesome-icon
 - conic-gradient
 
+# 紹介記事
+[パワーワードが作れる？ランダム単語合成アプリを作ってみた - Qiita](https://qiita.com/Syuparn/items/4ba7e7dc199c5e14ef78)
+
 # 注意！
 本アプリケーションでは、生成される単語のチェックは行っていません（完全にランダムです）。
 
